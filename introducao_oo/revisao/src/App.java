@@ -1,3 +1,9 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public class App {
 
     public static void main(String[] args) {
@@ -25,6 +31,7 @@ public class App {
 //        pj.setCnpj("55522266");
 //        pj.setEndereco(endereco);
         PessoaFisica pj = new PessoaFisica("Outra empresa", endereco, "2566");
-        System.out.println(pj);
+     //   System.out.println(pj);
+
     }
 }
