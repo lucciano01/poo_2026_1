@@ -1,5 +1,7 @@
 package br.edu.catolica.poo.collections.estudo_de_caso;
 
+import java.util.Objects;
+
 public class Usuario {
 
     private String cpf;
@@ -32,5 +34,17 @@ public class Usuario {
                 "cpf='" + cpf + '\'' +
                 ", nome='" + nome + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Usuario usuario = (Usuario) o;
+        return Objects.equals(cpf, usuario.cpf);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(cpf);
     }
 }

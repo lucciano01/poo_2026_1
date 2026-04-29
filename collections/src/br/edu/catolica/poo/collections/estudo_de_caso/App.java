@@ -2,6 +2,7 @@ package br.edu.catolica.poo.collections.estudo_de_caso;
 
 import java.security.Provider;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class App {
 
@@ -93,18 +94,36 @@ public class App {
 
 
     public static void consultarServico(){
-        List<Servico> listUsuario = new ArrayList<>();
+      //  List<Servico> listUsuario = new ArrayList<>();
+        List<Servico> servicosCpf = new ArrayList<>();
         System.out.print("Digite o cpf: ");
         String cpf = sc.next();
         for(Servico s: servicos){
             if(cpf.equals(s.getUsuario().getCpf())){
-                listUsuario.add(s);
+                servicosCpf.add(s);
             }
         }
-        System.out.println();
-        System.out.println("**************");
-        listUsuario.forEach(System.out::println);
-        System.out.println("**************");
+         if(servicosCpf.isEmpty()){
+            System.out.println("Não foi encontrado nenhum serviço par o cpf: " +cpf);
+        }else{
+         Map<Usuario, List<Servico>> listServicoUsuario =  servicosCpf.stream()
+                    .collect(Collectors.groupingBy(Servico::getUsuario));
+            listServicoUsuario.forEach(((usuario, servicos1) -> {
+                System.out.println("*************************");
+                System.out.println("Usuario: " +usuario.getNome()+ " - CPF:" +usuario.getCpf());
+                servicos1.forEach(System.out::println);
+                double total = servicos1.stream()
+                        .mapToDouble(Servico::getValor).sum();
+                System.out.println("Total R$: " +total);
+                System.out.println("**********************");
+            }));
+
+         }
+
+//        System.out.println();
+//        System.out.println("**************");
+//        listUsuario.forEach(System.out::println);
+//        System.out.println("**************");
 
     }
 

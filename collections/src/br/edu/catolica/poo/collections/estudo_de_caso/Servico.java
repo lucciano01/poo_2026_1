@@ -30,10 +30,7 @@ public class Servico {
 
     @Override
     public String toString() {
-        return "Servico{" +
-                "usuario=" + usuario +
-                ", tipoServico=" + tipoServico +
-                ", valor=" + valor +
-                '}';
+        return " Serviço : " + tipoServico +
+                "| Valor  R$: " + valor ;
     }
 }
